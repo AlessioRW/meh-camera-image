@@ -1,15 +1,17 @@
-import cv2, requests 
+import cv2, requests, discord
   
 # define a video capture object 
 vid = cv2.VideoCapture(0)
 width = vid.get(cv2.CAP_PROP_FRAME_WIDTH)
 height = vid.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
+client = discord.Client()
+
 while(True): 
     ret, frame = vid.read()
 
-    boxHeight = 580
-    boxWidth = 430
+    boxHeight = 975
+    boxWidth = 750
     start_point = ( int((width/2)-boxWidth/2) , int((height/2)-boxHeight/2))
     colour = (255, 0, 0) 
     thickness = 2
@@ -29,7 +31,7 @@ while(True):
 
         response = requests.post(
             'https://api.remove.bg/v1.0/removebg',
-            files=open('./camera_image.png', 'rb'),
+            files={'image_file': open('./camera_image.png', 'rb')},
             data={'size': 'auto'},
             headers={'X-Api-Key': 'ZujcDVvQxtcd6wL6E5RVKd3D'},
         )
@@ -43,3 +45,9 @@ while(True):
 vid.release()
 # Destroy all the windows
 cv2.destroyAllWindows()
+
+@bot.event
+async def uploadImage():
+    
+
+client.run('MTE3NDAzODI1NjQ2ODM2OTQ4OQ.GZeNap.AakMHXPeNNAA-Jgyt8zwIcL23iymUoFG1eyQiE')
