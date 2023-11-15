@@ -1,4 +1,4 @@
-import cv2, requests
+import cv2, requests, time
   
 # define a video capture object 
 vid = cv2.VideoCapture(0)
@@ -9,8 +9,8 @@ height = vid.get(cv2.CAP_PROP_FRAME_HEIGHT)
 while(True): 
     ret, frame = vid.read()
 
-    boxHeight = 975
-    boxWidth = 750
+    boxHeight = 500#975
+    boxWidth = 400#750
     start_point = ( int((width/2)-boxWidth/2) , int((height/2)-boxHeight/2))
     colour = (255, 0, 0) 
     thickness = 2
@@ -25,6 +25,7 @@ while(True):
         cropped_image = frame[start_point[1]+2:(start_point[1]+boxHeight)-2, start_point[0]+2:(start_point[0]+boxWidth)-2]
         cv2.imwrite('camera_image.png', cropped_image)
         print('Picture Saved')
+        time.sleep(3)
 
             
 
