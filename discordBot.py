@@ -27,4 +27,10 @@ async def getUrl(ctx):
     
     await ctx.channel.send(file=discord.File('no-bg.png'))
 
+    try:
+        os.remove('./camera_image.png')
+        os.remove('./no-bg.png')
+    except:
+        pass
+
 bot.run(TOKEN)
