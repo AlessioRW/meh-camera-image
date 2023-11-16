@@ -25,6 +25,7 @@ while(True):
     curFrame += 1
     ret, frame = vid.read()
     cv2.rectangle(frame, start_point, (start_point[0]+boxWidth, start_point[1]+boxHeight), colour, thickness)
+    cv2.flip()
 
     if frameTaken + 40 > curFrame and frameTaken != -1:
         cv2.putText(frame, 'Picture Taken', org, font,  
